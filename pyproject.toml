@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "contact-manager"
+version = "0.1.0"
+description = ""
+authors = ["Pavlo ereshko <pavlo.tereshko@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asyncpg = "^0.30.0"
+greenlet = "^3.2.3"
+pydantic = {extras = ["email"], version = "^2.11.5"}
+fastapi = "^0.115.12"
+uvicorn = "^0.34.3"
