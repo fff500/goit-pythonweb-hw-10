@@ -1,5 +1,12 @@
+from datetime import datetime, timedelta, UTC
+from typing import Optional
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
+from jose import jwt
+from src.conf.config import config
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
 
 class Hash:
@@ -12,4 +19,14 @@ class Hash:
         return self.pwd_context.hash(password)
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
+async def create_access_token(data: dict, expires_delta: Optional[int] = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now(UTC) + datetime.timedelta(seconds=expires_delta)
+    else:
+        expire = datetime.now(UTC) + timedelta(seconds=config.JWT_EXPIRATION_SECONDS)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(
+        to_encode, config.JWT_SECRET, algorithm=config.JWT_ALGORITHM
+    )
+    return encoded_jwt
