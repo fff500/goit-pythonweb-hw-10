@@ -16,3 +16,17 @@ class ContactResponse(ContactModel):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class UserModel(BaseModel):
+    id: int
+    email: EmailStr
+    username: str
+
+    model_config = ConfigDict(from_attributes=True, str_strip_whitespace=True)
+
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    username: str
+    password: str

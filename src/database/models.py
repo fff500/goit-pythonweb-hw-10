@@ -18,3 +18,11 @@ class Contact(Base):
     phone: Mapped[str] = mapped_column(String(20), nullable=False)
     birth_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     description: Mapped[str] = mapped_column(String(150), nullable=True)
+
+
+class User(Base):
+    __tablename__ = "users"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
+    username: Mapped[str] = mapped_column(String(30), nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
