@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from src.services.auth import Hash, create_access_token
 from src.schemas import Token, UserCreate, UserModel
 from src.services.users import UserService
@@ -44,5 +45,5 @@ async def login_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    access_token = await create_access_token(data={"sub": user.email})
+    access_token = await create_access_token(data={"sub": user.username})
     return {"access_token": access_token, "token_type": "bearer"}

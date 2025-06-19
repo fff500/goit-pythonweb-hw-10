@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import Integer, String
-from sqlalchemy.orm import mapped_column, Mapped, DeclarativeBase
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import mapped_column, Mapped, DeclarativeBase, relationship
 from sqlalchemy.sql.sqltypes import DateTime
 
 
@@ -18,6 +18,11 @@ class Contact(Base):
     phone: Mapped[str] = mapped_column(String(20), nullable=False)
     birth_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     description: Mapped[str] = mapped_column(String(150), nullable=True)
+
+    user_id = Column(
+        "user_id", ForeignKey("users.id", ondelete="CASCADE"), default=None
+    )
+    user = relationship("User", backref="contacts")
 
 
 class User(Base):
