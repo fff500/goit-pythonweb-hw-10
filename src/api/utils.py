@@ -4,6 +4,7 @@ from sqlalchemy import text
 
 from src.database.db import get_db
 
+
 router = APIRouter(tags=["utils"])
 
 
