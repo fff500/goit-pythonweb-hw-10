@@ -32,7 +32,6 @@ async def read_contact(
 ):
     contacts_service = ContactsService(db)
     contact = await contacts_service.get_contact(user, contact_id)
-    print(contact)
     if contact is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Contact not found"
@@ -48,7 +47,6 @@ async def search_contacts(
 ):
     contacts_service = ContactsService(db)
     contacts = await contacts_service.search_contacts(user, query)
-    print(contacts)
     if not contacts:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Contacts not found"
