@@ -1,6 +1,5 @@
 from datetime import datetime
-
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, Mapped, DeclarativeBase, relationship
 from sqlalchemy.sql.sqltypes import DateTime
 
@@ -31,3 +30,4 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     username: Mapped[str] = mapped_column(String(30), nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
+    is_confirmed: Mapped[bool] = mapped_column(Boolean, default=False)

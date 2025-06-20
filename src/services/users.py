@@ -17,3 +17,6 @@ class UserService:
 
     async def get_user_by_username(self, username: str):
         return await self.repository.get_user_by_username(username)
+
+    async def confirm_email(self, email: str):
+        return await self.repository.confirm_email(email)

@@ -34,3 +34,8 @@ class UserRepository:
         stmt = select(User).filter_by(username=username)
         user = await self.db.execute(stmt)
         return user.scalar_one_or_none()
+
+    async def confirm_email(self, email: str) -> None:
+        user = await self.get_user_by_email(email)
+        user.is_confirmed = True
+        await self.db.commit()
