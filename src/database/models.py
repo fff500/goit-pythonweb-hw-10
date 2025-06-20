@@ -31,3 +31,4 @@ class User(Base):
     username: Mapped[str] = mapped_column(String(30), nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     is_confirmed: Mapped[bool] = mapped_column(Boolean, default=False)
+    avatar: Mapped[str] = mapped_column(String(255), nullable=True)

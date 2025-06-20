@@ -16,3 +16,4 @@ passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 sqlalchemy = "^2.0.41"
 pydantic-settings = "^2.9.1"
 fastapi-mail = "^1.5.0"
+cloudinary = "^1.44.1"
